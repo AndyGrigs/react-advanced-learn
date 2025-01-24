@@ -19,8 +19,8 @@
         "prefix": "rc",
         "body": [
             "import React from 'react';",
+            "import { classNames } from 'shared/lib/classNames/classNames'",
             "import cls from './${TM_FILENAME_BASE}.module.scss'",
-            "import {classNames} from 'shared/helpers/classNames/classNames'",
             "",
             "export interface ${TM_FILENAME_BASE}Props {",
             "className?: string;",

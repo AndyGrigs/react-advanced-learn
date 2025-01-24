@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -12,8 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof AboutPage>;
 
-const Template: ComponentStory<typeof AboutPage> = (args) => <AboutPage {...args} />;
-
+const Template: ComponentStory<typeof AboutPage> = (
+    args: object,
+) => <AboutPage {...args} />;
 export const Normal = Template.bind({});
 Normal.args = {};
 
