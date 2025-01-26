@@ -6,7 +6,7 @@ import { counterActions } from '../model/slice/counterSlice';
 
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
 
- const Counter = () => {
+const Counter = () => {
     const dispatch = useDispatch();
 
     const counterValue = useSelector(getCounterValue);
