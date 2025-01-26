@@ -5,11 +5,11 @@ import { StateSchema } from '../config/StateSchema';
 
 export interface indexProps {
 children?: React.ReactNode;
-initialState?: StateSchema;
+initialState?: Partial<StateSchema>;
 }
 
 export const StoreProvider = ({ children, initialState }: indexProps) => {
-    const store = createReduxStore(initialState);
+    const store = createReduxStore(initialState as StateSchema);
 
     return (
         <Provider store={store}>

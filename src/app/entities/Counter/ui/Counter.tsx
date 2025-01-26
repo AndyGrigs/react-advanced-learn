@@ -1,28 +1,32 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from "shared/ui/Button/Button";
-import { counterActions } from "../model/slice/counterSlice";
-import { count } from "console";
-import { StateSchema } from "app/providers/StoreProvider/config/StateSchema";
+import { Button } from 'shared/ui/Button/Button';
+import { counterActions } from '../model/slice/counterSlice';
 
-export const Counter = () => {
-  const dispatch = useDispatch();
+import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
 
-  const counterValue = useSelector((state: StateSchema) => state.counter.value);
-  const increment = () => {
-    dispatch(counterActions.increment());
-  };
+ const Counter = () => {
+    const dispatch = useDispatch();
 
-  const decrement = () => {
-    dispatch(counterActions.decrement());
-  };
-  return (
-    <div>
-      <h1>Counter {counterValue}</h1>
+    const counterValue = useSelector(getCounterValue);
+    const increment = () => {
+        dispatch(counterActions.increment());
+    };
 
-      <Button onClick={increment}>Increment</Button>
-      <Button onClick={decrement}>Decrement</Button>
-    </div>
-  );
+    const decrement = () => {
+        dispatch(counterActions.decrement());
+    };
+    return (
+        <div>
+            <h1 data-testid="value-title">
+                {counterValue}
+            </h1>
+
+            <Button data-testid="increment-btn" onClick={increment}>Increment</Button>
+            <Button data-testid="decrement-btn" onClick={decrement}>Decrement</Button>
+        </div>
+    );
 };
+
+export default Counter;
