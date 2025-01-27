@@ -1,0 +1,11 @@
+get http://localhost:4445/users
+
+###
+post http://localhost:4445/user
+Content-Type: application/json
+
+{
+    "name": "Andriy",
+    "email": "andygrigs89@prisma.io",
+    "password": "123123"
+}
