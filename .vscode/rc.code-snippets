@@ -34,6 +34,7 @@
         "body": [
             "import React from 'react';",
             "import { classNames } from 'shared/lib/classNames/classNames'",
+             "import { useTranslation } from 'react-i18next';",
             "import cls from './${TM_FILENAME_BASE}.module.scss'",
             "",
             "export interface ${TM_FILENAME_BASE}Props {",
@@ -41,6 +42,7 @@
             "}",
             "",
             "export const $TM_FILENAME_BASE = ({className}:${TM_FILENAME_BASE}Props)=>  {",
+            "const { t } = useTranslation();",
             "  return (",
             "    <div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className || ''])}>",
             "      $2",
