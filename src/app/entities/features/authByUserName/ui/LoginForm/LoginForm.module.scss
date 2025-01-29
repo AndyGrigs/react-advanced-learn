@@ -1,10 +1,11 @@
 .LoginForm{
+    width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-input{
+.input{
     padding: 10px;
     border-radius: 5px;
 }
