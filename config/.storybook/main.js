@@ -16,6 +16,10 @@ module.exports = {
         options: {}
     },
 
+    testRunner: {
+        preset: 'playwright'
+      },
+
     docs: {},
 
     typescript: {
