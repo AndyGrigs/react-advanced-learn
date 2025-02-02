@@ -1815,6 +1815,13 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@playwright/test@^1.50.1":
+  version "1.50.1"
+  resolved "https://registry.npmjs.org/@playwright/test/-/test-1.50.1.tgz"
+  integrity sha512-Jii3aBg+CEDpgnuDxEp/h7BimHcUTDlpEtce89xEumlJ5ef2hqepZ+PWp1DDpYC/VO9fmWVI1IlEaoI5fK9FXQ==
+  dependencies:
+    playwright "1.50.1"
+
 "@polka/url@^1.0.0-next.20", "@polka/url@^1.0.0-next.24":
   version "1.0.0-next.28"
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.28.tgz"
@@ -9509,7 +9516,7 @@ playwright-core@>=1.2.0, playwright-core@1.50.1:
   resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.50.1.tgz"
   integrity sha512-ra9fsNWayuYumt+NiM069M6OkcRb1FZSK8bgi66AtpFoWkg2+y0bJSNmkFrWhMbEBbVKC/EruAHH3g0zmtwGmQ==
 
-playwright@^1.14.0, playwright@^1.50.1:
+playwright@^1.14.0, playwright@^1.50.1, playwright@1.50.1:
   version "1.50.1"
   resolved "https://registry.npmjs.org/playwright/-/playwright-1.50.1.tgz"
   integrity sha512-G8rwsOQJ63XG6BbKj2w5rHeavFjy5zynBA9zsJMMtBoe/Uf757oG12NXz6e6OirF7RCrTVAKFXbLmn1RbL7Qaw==
