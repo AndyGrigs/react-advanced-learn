@@ -1,6 +1,5 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcrypt';
 
 const app = express();
 const prisma = new PrismaClient();
@@ -18,20 +17,35 @@ app.get('/users', async (req, res) => {
 });
 
 // eslint-disable-next-line consistent-return
+app.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const user = await prisma.user.findFirst({ where: { username, password } });
+
+        if (!user) {
+            return res.status(401).send('Invalid email or password');
+        }
+
+        res.json(user).statusMessage = 'Login successful';
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// eslint-disable-next-line consistent-return
 app.post('/user', async (req, res) => {
     try {
         console.log(req.body);
-        const { name, email, password } = req.body;
+        const { username, password } = req.body;
         if (!password) {
             return res.status(400).send('No password provided!');
         }
-        const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = await prisma.user.create({
             data: {
-                name,
-                email,
-                password: hashedPassword,
+                username,
+                password,
             },
         });
 
@@ -43,19 +57,6 @@ app.post('/user', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
-// app.post('/user', async (req, res) => {
-//     try {
-//         const { name, email } = req.body;
-//         const user = await prisma.user.create({
-//             data: { name, email },
-//         });
-//         res.json(user);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
 
 const PORT = process.env.PORT || 4445;
 

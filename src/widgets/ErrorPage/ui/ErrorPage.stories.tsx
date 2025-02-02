@@ -1,25 +1,26 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+// ErrorPage.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { ErrorPage } from './ErrorPage';
 
-export default {
+// 1. Створюємо meta-об’єкт, який описує історію
+const meta: Meta<typeof ErrorPage> = {
     title: 'widget/ErrorPage',
     component: ErrorPage,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof ErrorPage>;
+};
+export default meta;
 
-const Template: ComponentStory<typeof ErrorPage> = (args) => (
-    <ErrorPage {...args} />
-);
+// 2. Оголошуємо тип для історій
+type Story = StoryObj<typeof ErrorPage>;
 
-export const Light = Template.bind({});
-Light.args = {};
+// 3. Описуємо кожну історію як об’єкт
+export const Light: Story = {
+    args: {},
+};
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+export const Dark: Story = {
+    args: {},
+    decorators: [ThemeDecorator(Theme.DARK)],
+};

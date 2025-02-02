@@ -5,7 +5,15 @@ post http://localhost:4445/user
 Content-Type: application/json
 
 {
-    "name": "Andriy",
-    "email": "andygrigs89@prisma.io",
-    "password": "123123"
+    "username": "Rufina",
+    "password": "111"
+}
+
+###
+post http://localhost:4445/login
+Content-Type: application/json
+
+{
+    "username": "Rufina",
+    "password": "111"
 }
