@@ -5,8 +5,8 @@ post http://localhost:4445/user
 Content-Type: application/json
 
 {
-    "username": "Rufina",
-    "password": "111"
+    "username": "David",
+    "password": "123"
 }
 
 ###
