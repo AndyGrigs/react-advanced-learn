@@ -15,18 +15,6 @@
 
 // const Template: StoryFn<typeof Modal> = (args) => <Modal {...args} />;
 
-// export const Primary = Template.bind({});
-// Primary.args = {
-//     isOpen: true,
-//     children: 'lorem ipsum dolor sit amet consectetu',
-// };
-// export const Dark = Template.bind({});
-// Dark.args = {
-//     isOpen: true,
-//     children: 'lorem ipsum dolor sit amet consectetu',
-// };
-
-// Dark.decorators = [ThemeDecorator(Theme.DARK)];
 import type { Meta, StoryObj } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';

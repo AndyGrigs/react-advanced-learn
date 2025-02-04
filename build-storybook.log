@@ -1,0 +1,35 @@
+
+> react-advanced-learn@1.0.0 storybook:build
+> storybook build -c ./config/.storybook --output-dir=C:\Users\andre\AppData\Local\Temp\chromatic--16032-E92pkPT97OET
+
+[1m@storybook/core v8.5.2
+[22m
+info => Cleaning outputDir: [36m..\..\AppData\Local\Temp\chromatic--16032-E92pkPT97OET[39m
+info => Loading presets
+info => Building manager..
+info => Manager built ([38;2;181;126;229m761 ms[39m)
+info => Building preview..
+info Addon-docs: using MDX3
+info => Using implicit CSS loaders
+info => Loading custom Webpack config (full-control mode).
+info Using tsconfig paths for react-docgen
+WARN export 'User' (reexported as 'User') was not found in './model/types/user' (module has no exports)
+WARN export 'UserSchema' (reexported as 'UserSchema') was not found in './model/types/user' (module has no exports)
+WARN export 'LoginSchema' (reexported as 'LoginSchema') was not found in './model/type/LoginSchema' (module has no exports)
+WARN export 'useId' (imported as 'yl') was not found in 'react' (possible exports: Children, Component, Fragment, Profiler, PureComponent, StrictMode, Suspense, __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, cloneElement, createContext, createElement, createFactory, createRef, forwardRef, isValidElement, lazy, memo, useCallback, useContext, useDebugValue, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useReducer, useRef, useState, version)
+WARN export 'useInsertionEffect' (imported as 'Re') was not found in 'react' (possible exports: Children, Component, Fragment, Profiler, PureComponent, StrictMode, Suspense, __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, cloneElement, createContext, createElement, createFactory, createRef, forwardRef, isValidElement, lazy, memo, useCallback, useContext, useDebugValue, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useReducer, useRef, useState, version)
+WARN export 'useInsertionEffect' (imported as 'Re') was not found in 'react' (possible exports: Children, Component, Fragment, Profiler, PureComponent, StrictMode, Suspense, __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, cloneElement, createContext, createElement, createFactory, createRef, forwardRef, isValidElement, lazy, memo, useCallback, useContext, useDebugValue, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useReducer, useRef, useState, version)
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   406.fe6627a9.iframe.bundle.js (1.57 MiB)
+WARN   999.f8f4ddad.iframe.bundle.js (932 KiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (1.59 MiB)
+WARN       runtime~main.327ff712.iframe.bundle.js
+WARN       406.fe6627a9.iframe.bundle.js
+WARN       main.4908cd27.iframe.bundle.js
+WARN 
+info => Preview built ([38;2;181;126;229m54 s[39m)
+info => Output directory: C:\Users\andre\AppData\Local\Temp\chromatic--16032-E92pkPT97OET
