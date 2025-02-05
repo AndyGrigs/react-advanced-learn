@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { StoreProvider } from 'app/providers/StoreProvider';
-import { LoginForm } from './LoginForm';
+import LoginForm from './LoginForm';
 
 export default {
     title: 'features/LoginForm', // Fixed path structure
