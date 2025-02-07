@@ -1,3 +1,4 @@
+// src/app/features/authByUserName/model/slice/loginSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LoginSchema } from '../type/LoginSchema';
 import loginByUserByName from '../services/loginByUserName/loginByUserName';

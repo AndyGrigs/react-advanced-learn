@@ -8,8 +8,7 @@ import { getUserAuthData, userActions } from 'app/entities/User';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
-    className?: string;
-
+  className?: string;
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
@@ -32,12 +31,10 @@ export const Navbar = ({ className }: NavbarProps) => {
     if (authData) {
         return (
             <div className={classNames(cls.Navbar, {}, [className])}>
-                <Button
-                    theme={ButtonTheme.CLEAR_INVERTED}
-                    onClick={onLogout}
-                >
+                <Button theme={ButtonTheme.CLEAR_INVERTED} onClick={onLogout}>
                     {t('vikhid')}
                 </Button>
+
                 <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
             </div>
         );
@@ -45,13 +42,12 @@ export const Navbar = ({ className }: NavbarProps) => {
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <Button
-                theme={ButtonTheme.CLEAR_INVERTED}
-                onClick={onShowModal}
-            >
+            <Button theme={ButtonTheme.CLEAR_INVERTED} onClick={onShowModal}>
                 {t('Вхід')}
             </Button>
-            <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            {isAuthModal && (
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            )}
         </div>
     );
 };
