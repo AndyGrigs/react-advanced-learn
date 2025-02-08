@@ -92,7 +92,6 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
             combinedReducer = combineReducers(reducers);
         },
         remove: (key: StateSchemaKey) => {
-            console.log('remove function called');
             if (!key || !reducers[key]) {
                 return;
             }
