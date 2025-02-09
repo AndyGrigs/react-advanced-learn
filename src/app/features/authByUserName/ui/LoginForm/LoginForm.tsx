@@ -1,13 +1,12 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useSelector, useDispatch, useStore } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/StateSchema';
 
-import { DynemicModuleLoader } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
+import { DynemicModuleLoader, ReducerList } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import loginByUserByName from '../../model/services/loginByUserName/loginByUserName';
@@ -19,6 +18,10 @@ import { getLoginError } from '../../model/selectors/getLoginError';
 export interface LoginFormProps {
   className?: string;
 }
+
+const initialRedusers: ReducerList = {
+    loginForm: loginReducer,
+};
 
 const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
@@ -40,10 +43,8 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         dispatch(loginByUserByName({ username, password }));
     }, [dispatch, password, username]);
 
-    const LOGIN_FORM_NAME = 'loginForm';
-
     return (
-        <DynemicModuleLoader removeAfterUnmount name={LOGIN_FORM_NAME} reducer={loginReducer}>
+        <DynemicModuleLoader removeAfterUnmount reducers={initialRedusers}>
             <div className={classNames(cls.LoginForm, {}, [className || ''])}>
                 <Text title={t('forma-avtorizacii')} />
                 {error && <Text text={error} theme={TextTheme.ERROR} />}

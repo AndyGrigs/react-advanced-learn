@@ -6,10 +6,16 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
+export type ReducerList = {
+    // eslint-disable-next-line no-unused-vars
+    [name in StateSchemaKey]?: Reducer;
+}
+
+type ReducerListEntry = [StateSchemaKey, Reducer];
+
 export interface DynemicModuleLoaderProps {
-  name: StateSchemaKey;
   children: React.ReactNode;
-  reducer: Reducer;
+  reducers: ReducerList;
   removeAfterUnmount?: boolean;
 }
 
@@ -17,19 +23,24 @@ export const DynemicModuleLoader: React.FC<DynemicModuleLoaderProps> = (
     props,
 ) => {
     const {
-        children, name, reducer, removeAfterUnmount,
+        children, reducers, removeAfterUnmount,
     } = props;
     const dispatch = useDispatch();
     const store = useStore() as ReduxStoreWithManager;
 
     useEffect(() => {
-        if (removeAfterUnmount) {
+        Object.entries(reducers).forEach(([name, reducer]: ReducerListEntry) => {
             store.reducerManager.add(name, reducer);
             dispatch({ type: `@INIT ${name}` });
-        }
+        });
+
         return () => {
-            store.reducerManager.remove(name);
-            dispatch({ type: `@DESTROY ${name}` });
+            if (removeAfterUnmount) {
+                Object.entries(reducers).forEach(([name]:ReducerListEntry) => {
+                    store.reducerManager.remove(name);
+                    dispatch({ type: `@DESTROY ${name}` });
+                });
+            }
         };
     // eslint-disable-next-line
   }, []);

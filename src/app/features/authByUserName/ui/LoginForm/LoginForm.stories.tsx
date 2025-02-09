@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { StoreProvider } from 'app/providers/StoreProvider';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import LoginForm from './LoginForm';
 
 export default {
@@ -9,13 +9,19 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [
+        (Story) => (
+            <StoreDecorator initialState={{
+                loginForm: { username: 'testuser', password: '123456', isLoading: false },
+            }}
+            >
+                <Story />
+            </StoreDecorator>
+        ),
+    ],
 } as Meta<typeof LoginForm>;
 
-const Template: StoryFn<typeof LoginForm> = (args) => (
-    <StoreProvider>
-        <LoginForm {...args} />
-    </StoreProvider>
-);
+const Template: StoryFn<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
