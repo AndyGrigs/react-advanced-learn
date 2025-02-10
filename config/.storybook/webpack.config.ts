@@ -24,8 +24,28 @@ export default ({ config }: {config: webpack.Configuration}) => {
 
     config.module?.rules?.push({
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: ['@svgr/webpack',  '@babel/plugin-transform-runtime', 'file-loader'],
     });
+
+    // config.module?.rules?.push({
+    //     test: /\.(ts|tsx|js|jsx)$/,
+    //     exclude: /node_modules/,
+    //     use: {
+    //         loader: 'babel-loader',
+    //         options: {
+    //             presets: [
+    //                 '@babel/preset-env',
+    //                 '@babel/preset-react',
+    //                 '@babel/preset-typescript',
+    //             ],
+    //             plugins: [
+    //                 '@babel/plugin-transform-runtime', // Correct placement of transform-runtime
+    //             ],
+    //         },
+    //     },
+    // });
+    
+
     config.module?.rules?.push(buildCssLoader(true));
 
       // Створюємо масив плагінів, якщо його немає
