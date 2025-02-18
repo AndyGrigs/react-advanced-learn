@@ -3,17 +3,19 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatsch } from 'shared/ui/hooks/useAppDispatsch/useAppDispatsch';
+import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { DynemicModuleLoader, ReducerList } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import loginByUserByName from '../../model/services/loginByUserName/loginByUserName';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError';
+import type { AppDispatch } from 'app/providers/StoreProvider';
+import loginByUserName from '../../model/services/loginByUserName/loginByUserName';
 
 export interface LoginFormProps {
   className?: string;
@@ -25,7 +27,7 @@ const initialRedusers: ReducerList = {
 
 const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatsch() as AppDispatch;
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
@@ -39,8 +41,15 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUserByName({ username, password }));
+
+    
+    
+    const onLoginClick = useCallback(async () => {
+      try {
+        await dispatch(loginByUserName({ username, password }));
+      } catch (e) {
+        console.error("Login failed", e);
+      }
     }, [dispatch, password, username]);
 
     return (
