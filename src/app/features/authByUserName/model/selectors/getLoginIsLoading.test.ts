@@ -7,7 +7,7 @@ describe('getLoginIsLoading.test', () => {
             loginForm: {
                 isLoading: true,
                 username: '',
-                password: ''
+                password: '',
             },
         };
         expect(getLoginIsLoading(state as StateSchema)).toEqual(true);

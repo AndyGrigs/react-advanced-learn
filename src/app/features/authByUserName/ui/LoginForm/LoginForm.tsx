@@ -8,13 +8,13 @@ import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { DynemicModuleLoader, ReducerList } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
+import type { AppDispatch } from 'app/providers/StoreProvider';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError';
-import type { AppDispatch } from 'app/providers/StoreProvider';
 import loginByUserName from '../../model/services/loginByUserName/loginByUserName';
 
 export interface LoginFormProps {
@@ -41,15 +41,12 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
-
-    
-    
     const onLoginClick = useCallback(async () => {
-      try {
-        await dispatch(loginByUserName({ username, password }));
-      } catch (e) {
-        console.error("Login failed", e);
-      }
+        try {
+            await dispatch(loginByUserName({ username, password }));
+        } catch (e) {
+            console.error('Login failed', e);
+        }
     }, [dispatch, password, username]);
 
     return (

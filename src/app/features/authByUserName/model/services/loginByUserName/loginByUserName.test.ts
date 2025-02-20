@@ -1,8 +1,7 @@
 import { userActions } from 'app/entities/User';
 import axios from 'axios';
-import loginByUserByName from './loginByUserName';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-
+import loginByUserByName from './loginByUserName';
 
 jest.mock('axios');
 
@@ -69,7 +68,7 @@ describe('loginByUsername.test', () => {
     //     mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
     //     const thunk = new TestAsyncThunk(loginByUserByName);
     //     const result = await thunk.callThunk({ username: '123', password: '123' });
-      
+
     //     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
     //     expect(mockedAxios.post).toHaveBeenCalled();
     //     expect(result.meta.requestStatus).toBe('rejected');

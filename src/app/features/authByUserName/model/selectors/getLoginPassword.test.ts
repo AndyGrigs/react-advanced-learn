@@ -1,13 +1,13 @@
-import { StateSchema } from "app/providers/StoreProvider";
-import { getLoginPassword } from "./getLoginPassword";
+import { StateSchema } from 'app/providers/StoreProvider';
+import { getLoginPassword } from './getLoginPassword';
 
 describe('getLoginPassword.test', () => {
     test('should return value', () => {
         const state: Partial<StateSchema> = {
             loginForm: {
                 password: '123123',
-                username: "",
-                isLoading: false
+                username: '',
+                isLoading: false,
             },
         };
         expect(getLoginPassword(state as StateSchema)).toEqual('123123');

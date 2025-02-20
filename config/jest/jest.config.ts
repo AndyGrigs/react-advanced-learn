@@ -41,8 +41,8 @@ export default {
     },
     transform: {
         '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
-      },
-      transformIgnorePatterns: ['<rootDir>/node_modules/(?!(axios)/)'],
+    },
+    transformIgnorePatterns: ['<rootDir>/node_modules/(?!(axios)/)'],
     //   presets: ['@babel/preset-env'],
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,

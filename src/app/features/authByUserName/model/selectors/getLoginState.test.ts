@@ -1,5 +1,5 @@
-import { StateSchema } from "app/providers/StoreProvider";
-import { getLoginState } from "./getLoginState";
+import { StateSchema } from 'app/providers/StoreProvider';
+import { getLoginState } from './getLoginState';
 
 describe('getLoginState.test', () => {
     test('should return login state', () => {
@@ -15,5 +15,5 @@ describe('getLoginState.test', () => {
     test('should work with empty state', () => {
         const state: Partial<StateSchema> = {};
         expect(getLoginState(state as StateSchema)).toBeUndefined();
-      });
+    });
 });

@@ -8,7 +8,7 @@ describe('getLoginError', () => {
                 error: 'Invalid credentials',
                 username: '',
                 password: '',
-                isLoading: false
+                isLoading: false,
             },
         };
         expect(getLoginError(state as StateSchema)).toEqual('Invalid credentials');
@@ -19,11 +19,9 @@ describe('getLoginError', () => {
             loginForm: {
                 username: '',
                 password: '',
-                isLoading: false
+                isLoading: false,
             },
         };
         expect(getLoginError(state as StateSchema)).toEqual('');
     });
 });
-
- 
