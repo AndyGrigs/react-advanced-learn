@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { DynemicModuleLoader, ReducerList } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
+import { UnknownAction } from '@reduxjs/toolkit';
 import type { AppDispatch } from 'app/providers/StoreProvider';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
@@ -43,7 +44,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
     const onLoginClick = useCallback(async () => {
         try {
-            await dispatch(loginByUserName({ username, password }));
+            await dispatch(loginByUserName({ username, password }) as unknown as UnknownAction);
         } catch (e) {
             console.error('Login failed', e);
         }
