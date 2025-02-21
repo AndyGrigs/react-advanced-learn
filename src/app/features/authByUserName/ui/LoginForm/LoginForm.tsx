@@ -7,16 +7,15 @@ import { useAppDispatsch } from 'shared/ui/hooks/useAppDispatsch/useAppDispatsch
 import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
-import { DynemicModuleLoader, ReducerList } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
 import { UnknownAction } from '@reduxjs/toolkit';
-import type { AppDispatch } from 'app/providers/StoreProvider';
+import { DynemicModuleLoader, ReducerList } from 'shared/lib/components/DynemicModuleLoader/DynemicModuleLoader';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError';
-import loginByUserName from '../../model/services/loginByUserName/loginByUserName';
+import loginByUserName, { LoginByUsernameProps } from '../../model/services/loginByUserName/loginByUserName';
 
 export interface LoginFormProps {
   className?: string;
@@ -44,7 +43,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
     const onLoginClick = useCallback(async () => {
         try {
-            await dispatch(loginByUserName({ username, password }) as unknown as UnknownAction);
+            dispatch(loginByUserName({ username, password })as unknown as UnknownAction);
         } catch (e) {
             console.error('Login failed', e);
         }
