@@ -1,27 +1,69 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import type { Meta, StoryObj } from '@storybook/react';
+import { createStoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from 'app/providers/ThemeProvider';
 import LoginForm from './LoginForm';
 
-export default {
-    title: 'features/LoginForm', // Fixed path structure
+const meta: Meta<typeof LoginForm> = {
+    title: 'features/LoginForm',
     component: LoginForm,
-    argTypes: {
-        backgroundColor: { control: 'color' },
+    parameters: {
+        layout: 'centered',
     },
+    tags: ['autodocs'],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof LoginForm>;
+
+export const Primary: Story = {
     decorators: [
-        (Story) => (
-            <StoreDecorator initialState={{
-                loginForm: { username: 'testuser', password: '123456', isLoading: false },
-            }}
-            >
-                <Story />
-            </StoreDecorator>
-        ),
+        createStoreDecorator({
+            loginForm: { 
+                username: 'testuser', 
+                password: '123456', 
+                isLoading: false 
+            },
+        }),
     ],
-} as Meta<typeof LoginForm>;
+};
 
-const Template: StoryFn<typeof LoginForm> = (args) => <LoginForm {...args} />;
+export const WithError: Story = {
+    decorators: [
+        createStoreDecorator({
+            loginForm: { 
+                username: 'testuser', 
+                password: '123456', 
+                isLoading: false,
+                error: 'Неправильний логін або пароль'
+            },
+        }),
+    ],
+};
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Loading: Story = {
+    decorators: [
+        createStoreDecorator({
+            loginForm: { 
+                username: 'testuser', 
+                password: '123456', 
+                isLoading: true 
+            },
+        }),
+    ],
+};
+
+export const Dark: Story = {
+    decorators: [
+        ThemeDecorator(Theme.DARK),
+        createStoreDecorator({
+            loginForm: { 
+                username: 'testuser', 
+                password: '123456', 
+                isLoading: false 
+            },
+        }),
+    ],
+};
