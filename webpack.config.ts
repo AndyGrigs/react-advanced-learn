@@ -1,27 +1,44 @@
-import webpack from 'webpack';
+import webpack, { RuleSetRule } from 'webpack';
 import path from 'path';
-import { buildWebpackConfig } from './config/build/buildWebpackConfig';
-import { BuildEnv, BuildPaths } from './config/build/types/config';
+import { buildCssLoader } from '../build/loaders/buildCssLoader';
+import { BuildPaths } from '../build/types/config';
 
-export default (env: BuildEnv) => {
+export default ({ config }: {config: webpack.Configuration}) => {
     const paths: BuildPaths = {
-        entry: path.resolve(__dirname, 'src', 'index.tsx'),
-        build: path.resolve(__dirname, 'build'),
-        html: path.resolve(__dirname, 'public', 'index.html'),
-        src: path.resolve(__dirname, 'src'),
+        build: '',
+        html: '',
+        entry: '',
+        src: path.resolve(__dirname, '..', '..', 'src'),
     };
 
-    const mode = env.mode || 'development';
-    const PORT = env.port || 3000;
+    // Додаємо src до resolve modules
+    config.resolve!.modules!.push(paths.src);
+    config.resolve!.extensions!.push('.ts', '.tsx');
 
-    const isDev = mode === 'development';
+    // Модифікуємо правила для SVG
+    if (config.module?.rules) {
+        config.module.rules = config.module.rules.map((rule: RuleSetRule | '...') => {
+            if (rule !== '...' && rule.test && /svg/.test(String(rule.test))) {
+                return { ...rule, exclude: /\.svg$/i };
+            }
+            return rule;
+        });
+    }
 
-    const config: webpack.Configuration = buildWebpackConfig({
-        mode,
-        paths,
-        isDev,
-        port: PORT,
+    // Додаємо обробку SVG
+    config.module?.rules?.push({
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
     });
+
+    // Додаємо CSS loader
+    config.module?.rules?.push(buildCssLoader(true));
+
+    // Додаємо DefinePlugin
+    config.plugins = config.plugins || [];
+    config.plugins.push(new webpack.DefinePlugin({
+        __IS_DEV__: JSON.stringify(true),
+    }));
 
     return config;
 };
